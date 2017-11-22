@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+h1,
+h2 {
+  font-weight: 600; }
+
+ul,
+ol {
+  list-style: none; }
+
+a {
+  color: #2a83e2; }
+
+.container {
+  width: 996px;
+  margin: 0 auto 20px; }
+
+.grid {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px; }
+
+@media (max-width: 1024px) {
+  .container {
+    width: 100%; } }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  color: #222;
+  background: #f9f9f9; }
+
+h1 {
+  font-size: 22px; }
+
+.app-header {
+  margin: 20px auto;
+  text-align: center; }
+  .app-header h1 {
+    display: inline-block;
+    vertical-align: middle; }
+
+.app-logo {
+  display: inline-block;
+  vertical-align: middle; }
+
+.privacy-policy-container {
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 1px 2px #f4f4f4; }
+
+.privacy-policy__head {
+  margin-bottom: 30px; }
+
+.privacy-policy__title {
+  font-size: 18px; }
+
+.privacy-policy__subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px; }
+
+.privacy-policy-list__item {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f4f4f4; }
+  .privacy-policy-list__item:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0; }
+
+.privacy-policy-list-item__heading {
+  font-weight: 600;
+  margin-bottom: 10px; }
+
+.privacy-policy-list-item__description {
+  color: #444; }
