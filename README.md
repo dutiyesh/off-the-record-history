@@ -4,6 +4,8 @@
 
 > Browser extension to track your browsing history in incognito mode. Self-destructs history on browser close.
 
+### 🎁 Build you next extension with new [Chrome Extension CLI](https://github.com/dutiyesh/chrome-extension-cli) 🚀
+
 ## Install
 
 [**Chrome** extension][link-cws]
