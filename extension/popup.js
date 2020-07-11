@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				targetTabList[i].addEventListener('click', function (event) {
 
 					var tabIndex = this.getAttribute('data-tab-index');
-					document.getElementById('tab-bottom-slider').style.left = 225 * tabIndex + 'px';
+					document.getElementById('tab-bottom-slider').style.left = 50 * tabIndex + '%';
 
 					var tabsList = document.getElementsByClassName('tab-record-list'),
 						tabsListLength = tabsList.length - 1;
@@ -174,12 +174,14 @@ function showRecord(result, list) {
 		if (favIconUrl != undefined)
 			img.setAttribute('src', favIconUrl);
 		else
-			img.setAttribute('src', 'http://tiny.cc/public/images/default-favicon.ico');
+			img.setAttribute('src', 'file-icon.svg');
 
 		li.appendChild(img);
 
 		var a = document.createElement('a');
 		a.setAttribute('href', record[i].url);
+		a.setAttribute('title', record[i].title);
+
 		if (ulType)
 			a.setAttribute('class', 'history-target-link');
 		else
