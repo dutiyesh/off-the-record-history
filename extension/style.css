@@ -10,9 +10,13 @@ header div { position: relative; }
 #delete-btn img { width: 16px; position: relative; top: 0px; opacity: 0.8; }
 #delete-btn:hover img { opacity: 1; }
 
-#tab-response-content { width: 100%; margin: 0 auto; text-align: center; padding-top: 50px; }
+#tab-response-content { width: 100%; margin: 0 auto; text-align: center; padding-top: 40px; }
 #tab-response-content img { width: 96px; }
 #response-text { margin-top: 10px; font-size: 16px; font-weight: 600; }
+
+.instructions-container { max-width: 312px; margin: 10px auto 0; text-align: left; font-size: 15px; font-weight: 400; }
+.instructions-title { margin-bottom: 4px; }
+.instructions-list { margin-left: 20px; line-height: 1.2; }
 
 #tabs-content { width: 100%; position: relative; background: #2e2e50; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2); -webkit-user-select: none; user-select: none; }
 #tabs-content span { width: 50%; height: 40px; color: #f8fafb; display: inline-block; line-height: 40px; background: #2e2e50; border-radius: 2px; font-size: 14px; text-align: center; position: relative; overflow: hidden; cursor: pointer; }

@@ -117,10 +117,25 @@ document.addEventListener('DOMContentLoaded', function () {
 			deleteBtn.style.display = 'none';
 
 			chrome.extension.isAllowedIncognitoAccess(function (response) {
-				if (!response)
-					nullResponse("This extension is for incognito mode only.<br>To allow the extension to work in incognito:<br>1. Open 'chrome://extensions/' window<br>2. Find 'Off The Record History' extension<br>3. Click on 'Details' button<br>4. Find and select the 'Allow in incognito' checkbox");
-				else
+				if (!response) {
+					var message = '';
+
+					message += 'This extension is for incognito mode only.';
+					message += '<div class="instructions-container">';
+						message += '<p class="instructions-title">To allow the extension to work in incognito:</p>'
+						message += '<ol class="instructions-list">';
+							message += '<li>Open <b>chrome://extensions/</b> window</li>';
+							message += '<li>Find <b>Off The Record History</b> extension';
+							message += '<li>Click on <b>Details</b> button</li>';
+							message += '<li>Find and select the <b>Allow in incognito</b> checkbox</li>';
+						message += '</ol>';
+					message += '</div>';
+
+					nullResponse(message);
+				}
+				else {
 					nullResponse('This extension is for incognito mode only.');
+				}
 			});
 		}
 	})
