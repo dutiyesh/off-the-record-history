@@ -39,7 +39,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 var tab = {
 	storeData: function (tabInfo) {
 		var arr = [];
-		arr = JSON.parse(localStorage.getItem(incogHistory));
+		arr = JSON.parse(localStorage.getItem(incogHistory)) || [];
 		arr.push(tabInfo);
 
 		localStorage.setItem(incogHistory, JSON.stringify(arr));
@@ -59,7 +59,7 @@ function recentRecord(tabId) {
 		var sameTab = [],
 			sameTabLength;
 
-		recent = JSON.parse(localStorage.getItem(incogRecent));
+		recent = JSON.parse(localStorage.getItem(incogRecent)) || [];
 
 		for (var i = 0; i <= historyLength; i++) {
 			if (tabId == history[i].id)
