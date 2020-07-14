@@ -52,7 +52,7 @@ function recentRecord(tabId) {
 		history = [],
 		historyLength;
 
-	history = JSON.parse(localStorage.getItem(incogHistory));
+	history = JSON.parse(localStorage.getItem(incogHistory)) || [];
 	historyLength = history.length - 1;
 
 	if (tabId != undefined) {
