@@ -110,3 +110,5 @@ chrome.windows.onRemoved.addListener(function () {
 	}
 
 });
+
+chrome.runtime.setUninstallURL("https://forms.gle/f1TQw2RK5v6M9zBP9");
