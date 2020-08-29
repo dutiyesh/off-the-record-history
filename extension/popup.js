@@ -16,144 +16,127 @@ function trackLinkClick(e) {
 	_gaq.push(['_trackEvent', e.target.className, 'clicked']);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+// pre-wake bg
+chrome.runtime.getBackgroundPage(function(){});
 
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
 	var tabContent = document.getElementById('tabs-content'),
 		recordList0 = document.getElementById('record-list-0'),
 		recordList1 = document.getElementById('record-list-1'),
-		deleteBtn = document.getElementById('delete-btn');
+		deleteBtn = document.getElementById('delete-btn'),
+		bg = chrome.extension.getBackgroundPage();
 
-	chrome.tabs.query({
-		active: true,
-    currentWindow: true
-	}, function (tabs) {
-		var tab = tabs[0];
-		if (tab.incognito) {
-			tabContent.style.display = 'block';
-			recordList0.style.display = 'block';
-			recordList1.style.display = 'none';
-			deleteBtn.style.display = 'block';
+	// wake up bg page
+	if (!bg) {
+		chrome.runtime.getBackgroundPage(init);
+		return;
+		}
 
-			var recentlyClosed = [],
-				allHistory = [],
+	if (chrome.extension.inIncognitoContext) {
+		tabContent.style.display = 'block';
+		recordList0.style.display = 'block';
+		recordList1.style.display = 'none';
+		deleteBtn.style.display = 'block';
 
-				incogRecentLocalStorage = localStorage.getItem('incogRecent'),
-				incogHistoryLocalStorage = localStorage.getItem('incogHistory');
+		var recentlyClosed = bg.incRecent,
+			allHistory = bg.incHist;
 
-			recentlyClosed = JSON.parse(incogRecentLocalStorage);
-			allHistory = JSON.parse(incogHistoryLocalStorage);
+		if (recentlyClosed.length != 0)
+			notNullResponse();
+		else
+			nullResponse('No records found!')
 
-			if (incogRecentLocalStorage != null) {
-				if (recentlyClosed.length != 0)
-					notNullResponse();
-				else
-					nullResponse('No records found!')
+		showRecord(recentlyClosed, 'record-list-0');
+		showRecord(allHistory, 'record-list-1');
 
-				showRecord(recentlyClosed, 'record-list-0');
-			}
-			else
-				nullResponse('No records found!');
+		var targetTabList = document.getElementById('tabs-content').getElementsByTagName('span');
 
+		for (var i = 0; i < targetTabList.length; i++) {
+			targetTabList[i].addEventListener('click', function (event) {
 
-			if (incogHistoryLocalStorage != null)
-				showRecord(allHistory, 'record-list-1');
+				var tabIndex = this.getAttribute('data-tab-index');
+				document.getElementById('tab-bottom-slider').style.left = 50 * tabIndex + '%';
 
+				var tabsList = document.getElementsByClassName('tab-record-list'),
+					tabsListLength = tabsList.length - 1;
 
-			var targetTabList = document.getElementById('tabs-content').getElementsByTagName('span');
-
-			for (var i = 0; i < targetTabList.length; i++) {
-				targetTabList[i].addEventListener('click', function (event) {
-
-					var tabIndex = this.getAttribute('data-tab-index');
-					document.getElementById('tab-bottom-slider').style.left = 50 * tabIndex + '%';
-
-					var tabsList = document.getElementsByClassName('tab-record-list'),
-						tabsListLength = tabsList.length - 1;
-
-					for (var i = 0; i <= tabsListLength; i++) {
-						tabsList[i].style.display = 'none';
-					}
-
-					var currentTabList = document.getElementById('record-list-' + tabIndex);
-					if (currentTabList.getElementsByTagName('li').length == 0)
-						nullResponse('No records found!');
-
-					else {
-						notNullResponse();
-						currentTabList.style.display = 'block';
-						currentTabList.scrollTop = 0;
-					}
-
-					trackButtonClick(event);
-
-				});
-			}
-
-			var recentLinkList = document.getElementsByClassName('recent-target-link');
-
-			for (var i = 0; i < recentLinkList.length; i++) {
-				recentLinkList[i].addEventListener('click', function (event) {
-					chrome.tabs.create({
-						'url': this.getAttribute('href')
-					});
-					trackLinkClick(event);
-				});
-			}
-
-			var historyLinkList = document.getElementsByClassName('history-target-link');
-
-			for (var i = 0; i < historyLinkList.length; i++) {
-				historyLinkList[i].addEventListener('click', function (event) {
-					chrome.tabs.create({
-						'url': this.getAttribute('href')
-					});
-					trackLinkClick(event);
-				});
-			}
-		} else {
-			tabContent.style.display = 'none';
-			recordList0.style.display = 'none';
-			recordList1.style.display = 'none';
-			deleteBtn.style.display = 'none';
-
-			chrome.extension.isAllowedIncognitoAccess(function (response) {
-				if (!response) {
-					var message = '';
-
-					message += 'This extension is for incognito mode only.';
-					message += '<div class="instructions-container">';
-						message += '<p class="instructions-title">To allow the extension to work in incognito:</p>'
-						message += '<ol class="instructions-list">';
-							message += '<li>Open <b>chrome://extensions/</b> window</li>';
-							message += '<li>Find <b>Off The Record History</b> extension';
-							message += '<li>Click on <b>Details</b> button</li>';
-							message += '<li>Find and select the <b>Allow in incognito</b> switch</li>';
-						message += '</ol>';
-					message += '</div>';
-
-					nullResponse(message);
+				for (var i = 0; i <= tabsListLength; i++) {
+					tabsList[i].style.display = 'none';
 				}
+
+				var currentTabList = document.getElementById('record-list-' + tabIndex);
+				if (currentTabList.getElementsByTagName('li').length == 0)
+					nullResponse('No records found!');
+
 				else {
-					nullResponse('This extension is for incognito mode only.');
+					notNullResponse();
+					currentTabList.style.display = 'block';
+					currentTabList.scrollTop = 0;
 				}
+
+				trackButtonClick(event);
+
 			});
 		}
-	})
+
+		var recentLinkList = document.getElementsByClassName('recent-target-link');
+
+		for (var i = 0; i < recentLinkList.length; i++) {
+			recentLinkList[i].addEventListener('click', function (event) {
+				chrome.tabs.create({
+					'url': this.getAttribute('href')
+				});
+				trackLinkClick(event);
+			});
+		}
+
+		var historyLinkList = document.getElementsByClassName('history-target-link');
+
+		for (var i = 0; i < historyLinkList.length; i++) {
+			historyLinkList[i].addEventListener('click', function (event) {
+				chrome.tabs.create({
+					'url': this.getAttribute('href')
+				});
+				trackLinkClick(event);
+			});
+		}
+
+	} else {
+		tabContent.style.display = 'none';
+		recordList0.style.display = 'none';
+		recordList1.style.display = 'none';
+		deleteBtn.style.display = 'none';
+
+		chrome.extension.isAllowedIncognitoAccess(function (response) {
+			if (!response) {
+				var message = '';
+
+				message += 'This extension is for incognito mode only.';
+				message += '<div class="instructions-container">';
+					message += '<p class="instructions-title">To allow the extension to work in incognito:</p>'
+					message += '<ol class="instructions-list">';
+						message += '<li>Open <b>chrome://extensions/</b> window</li>';
+						message += '<li>Find <b>Off The Record History</b> extension';
+						message += '<li>Click on <b>Details</b> button</li>';
+						message += '<li>Find and select the <b>Allow in incognito</b> switch</li>';
+					message += '</ol>';
+				message += '</div>';
+
+				nullResponse(message);
+			}
+			else {
+				nullResponse('This extension is for incognito mode only.');
+			}
+		});
+	}
 
 
 	document.getElementById('delete-btn').addEventListener('click', function (event) {
-
-		var recentlyClosed = [],
-			allHistory = [];
-
-		recentlyClosed = JSON.parse(localStorage.getItem('incogRecent'));
-		allHistory = JSON.parse(localStorage.getItem('incogHistory'));
-
-		recentlyClosed.length = 0;
-		allHistory.length = 0;
-
-		localStorage.setItem('incogHistory', JSON.stringify(allHistory));
-		localStorage.setItem('incogRecent', JSON.stringify(recentlyClosed));
+		bg.incRecent = [];
+		bg.incHist = [];
+		bg.tabs = {};
 
 		recordList0.innerHTML = '';
 		recordList1.innerHTML = '';
@@ -163,17 +146,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	});
 
-	var nullResponse = function (message) {
+	function nullResponse(message) {
 		document.getElementById('tab-response-content').style.display = 'block';
 		document.getElementById('response-text').innerHTML = message;
 	}
 
-	var notNullResponse = function () {
+	function notNullResponse() {
 		document.getElementById('tab-response-content').style.display = 'none';
 		document.getElementById('response-text').innerHTML = '';
 	}
 
-});
+}
 
 function showRecord(result, list) {
 	var i,

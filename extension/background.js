@@ -1,114 +1,51 @@
-var windowCount = 'windowCount',
-	incogHistory = 'incogHistory',
-	incogRecent = 'incogRecent';
+if (!chrome.extension.inIncognitoContext) window.close();
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+var tabs = JSON.parse(localStorage.tabs || '{}'), incHist = JSON.parse(localStorage.incHist || '[]'), incRecent = JSON.parse(localStorage.incRecent || '[]');
 
-	if (!sender.tab.incognito) {
-		return;
-	}
+chrome.runtime.onSuspend.addListener(function(){
+	localStorage.setItem('tabs', JSON.stringify(tabs));
+	localStorage.setItem('incHist', JSON.stringify(incHist));
+	localStorage.setItem('incRecent', JSON.stringify(incRecent));
+	});
 
-	var tabInfo = {
-		id: sender.tab.id,
-		url: sender.tab.url,
-		title: sender.tab.title,
-		favIcon: sender.tab.favIconUrl,
-		timestamp: Date()
-	};
+chrome.tabs.onUpdated.addListener(function(tabId, chg, tab){
+	if ( ['chrome://newtab/', 'about:blank'].includes(tab.url) ) return;
 
-	if (localStorage.getItem(windowCount) == null) {
-		count = 1;
-		localStorage.setItem(windowCount, count);
-	}
-
-	if (localStorage.getItem(incogHistory) == null) {
-		var arr = [];
-		localStorage.setItem(incogHistory, JSON.stringify(arr));
-	}
-
-	if (localStorage.getItem(incogRecent) == null) {
-		var arr = [];
-		arr.length = 0;
-		localStorage.setItem(incogRecent, JSON.stringify(arr));
-	}
-
-	tab.storeData(tabInfo);
-
-});
-
-var tab = {
-	storeData: function (tabInfo) {
-		var arr = [];
-		arr = JSON.parse(localStorage.getItem(incogHistory)) || [];
-		arr.push(tabInfo);
-
-		localStorage.setItem(incogHistory, JSON.stringify(arr));
-	}
-}
-
-
-function recentRecord(tabId) {
-	var recent = [],
-		history = [],
-		historyLength;
-
-	history = JSON.parse(localStorage.getItem(incogHistory)) || [];
-	historyLength = history.length - 1;
-
-	if (tabId != undefined) {
-		var sameTab = [],
-			sameTabLength;
-
-		recent = JSON.parse(localStorage.getItem(incogRecent)) || [];
-
-		for (var i = 0; i <= historyLength; i++) {
-			if (tabId == history[i].id)
-				sameTab.push(history[i]);
+	var t, oldU, n;
+	if (t=tabs[tabId]) {
+		oldU=t.url;
+		n=t.n;
 		}
 
-		sameTabLength = sameTab.length;
-		if (sameTabLength > 1)
-			recent.push(sameTab[sameTabLength - 1]);
-		else
-			recent.push(sameTab[0]);
+	if ( (chg.status=='loading') || !t) {
+		t=tabs[tabId]={id:tabId, url:tab.url, title:tab.title, timestamp: Date()};
+		if (tab.favIconUrl) t.favIcon=tab.favIconUrl;
+		if (oldU != t.url) {
+			t.n=incHist.length;
+			incHist.push(t);
+			}
+		else if (n !== undefined) {
+			// re-linking
+			t.n=n;
+			incHist[n]=t;
+			}
+		}
+	else if ( (chg.status=='complete') || chg.title || chg.favIconUrl) {
+		t.title=tab.title;
+		if (tab.favIconUrl) t.favIcon=tab.favIconUrl;
+		}
+	});
 
-		recent = recent.filter(function (e) { return e != null });
-
-		localStorage.setItem(incogRecent, JSON.stringify(recent));
-	}
-}
-
+chrome.tabs.onReplaced.addListener(function(newId, oldId){
+	console.info('replace tab', newId, oldId);
+	if (tabs[oldId]) {
+		tabs[newId]=tabs[oldId];
+		tabs[newId].id=newId;
+		}
+	});
 
 chrome.tabs.onRemoved.addListener(function (tab) {
-	recentRecord(tab);
-});
-
-chrome.windows.onCreated.addListener(function (window) {
-	if (localStorage.getItem(windowCount) == null) {
-		count = 1;
-		localStorage.setItem(windowCount, count);
-	}
-	else {
-		var count = parseInt(localStorage.getItem(windowCount));
-		count++;
-		localStorage.setItem(windowCount, count);
-	}
-});
-
-chrome.windows.onRemoved.addListener(function () {
-
-	if (localStorage.getItem(windowCount) != null) {
-		var count = parseInt(localStorage.getItem(windowCount));
-		count--;
-		localStorage.setItem(windowCount, count);
-	}
-
-	if (count == 0) {
-		localStorage.removeItem(incogHistory);
-		localStorage.removeItem(incogRecent);
-		localStorage.removeItem(windowCount);
-	}
-
+	if (tabs[tab]) incRecent.push(tabs[tab]);
 });
 
 chrome.runtime.setUninstallURL("https://forms.gle/f1TQw2RK5v6M9zBP9");
