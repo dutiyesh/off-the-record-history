@@ -3,7 +3,7 @@
 
    "name": "Off The Record History",
    "description": "Track your browsing history in incognito mode. Self-destructs history on browser close.",
-   "version": "0.1.4.1",
+   "version": "0.2.0",
 
    "icons": {
       "16": "icon16.png",

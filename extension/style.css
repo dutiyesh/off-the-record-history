@@ -1,33 +1,41 @@
-body { font-size: 14px; font-family: 'Segoe UI', Tahoma, sans-serif; color: #262626; background-color: #f8fafb; }
+body { font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #022341; background-color: #fff; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-a { color: #666; font-weight: 500; text-decoration: none; }
+a { color: #022341; font-weight: 500; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-#container { width: 450px; min-height: 320px; max-height: 500px; background: #f8fafb; }
-header { width: 100%; height: 40px; padding:0 10px; font-size: 18px; text-align: center; color:#f8fafb; background: #272425; line-height: 40px; -webkit-user-select: none; user-select: none; }
+#container { width: 400px; min-height: 360px; max-height: 500px; background: #fff; }
+header { width: 100%; height: 40px; padding:0 10px; font-size: 18px; font-weight: 500; text-align: center; color:#f8fafb; background: #2e2e50; line-height: 40px; -webkit-user-select: none; user-select: none; }
 header div { position: relative; }
 #delete-btn { position: absolute; top: 0; right: 0; cursor: pointer; }
-#delete-btn img { width: 12px; position: relative; top: 2px; opacity: 0.7; }
+#delete-btn img { width: 16px; position: relative; top: 0px; opacity: 0.8; }
 #delete-btn:hover img { opacity: 1; }
 
-#tab-response-content { width: 360px; margin: 0 auto; text-align: center; padding-top: 20px; }
+#tab-response-content { width: 100%; margin: 0 auto; text-align: center; padding-top: 40px; }
 #tab-response-content img { width: 96px; }
 #response-text { margin-top: 10px; font-size: 16px; font-weight: 600; }
-#tabs-content { width: 100%; position: relative; background: #272425; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2); -webkit-user-select: none; user-select: none; }
-#tabs-content span { width: 225px; height: 30px; color: #f8fafb; display: inline-block; line-height: 30px; background: #272425; font-size: 14px; text-align: center; position: relative; overflow: hidden; cursor: pointer; }
-#tab-bottom-slider { width: 225px; height: 3px; position: absolute; bottom: 0; left: 0; background: #fede33; transition: all 0.2s; }
+
+.instructions-container { max-width: 312px; margin: 8px auto 0; text-align: left; font-size: 15px; font-weight: 400; }
+.instructions-title { margin-bottom: 4px; }
+.instructions-list { margin-left: 20px; line-height: 1.3; }
+
+#tabs-content { width: 100%; position: relative; background: #2e2e50; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2); -webkit-user-select: none; user-select: none; }
+#tabs-content span { width: 50%; height: 40px; color: #f8fafb; display: inline-block; line-height: 40px; background: #2e2e50; border-radius: 2px; font-size: 14px; text-align: center; position: relative; overflow: hidden; cursor: pointer; }
+#tabs-content span:hover { background: #3c3c63; }
+#tab-bottom-slider { width: 50%; height: 4px; border-top-left-radius: 2px; border-top-right-radius: 2px; position: absolute; bottom: 0; left: 0; background: #ff785a; transition: all 0.2s; }
 
 .list-header { padding: 10px; font-weight: 500; border-bottom: 1px solid #2C3E50; }
-.tab-record-list { list-style: none; max-height: 400px; overflow-y: scroll; }
+.tab-record-list { list-style: none; max-height: 400px; overflow-y: auto; }
 #record-list-1.tab-record-list { display: none; }
-.tab-record-list li { font-size: 13px; padding: 8px 10px; border-top:1px solid #e2e2e2; } 
+.tab-record-list li { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; font-size: 14px; padding: 12px 14px; border-top:1px solid #e6ecf0; } 
 .tab-record-list li:first-child { border-top: none; }
-.tab-record-list img { width: 16px; position: relative; top: 1px; margin-right: 5px; }
-.tab-record-list a { width: 360px; margin-right: 10px; overflow: hidden; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
-.tab-record-list span { color: #aaa; }
+.tab-record-list li:hover { background-color: #f5f8fa; }
+.tab-record-list img { width: 16px; margin-right: 6px; }
+.tab-record-list img[src*="file-icon.svg"] { height: 14px; opacity: .7; }
+.tab-record-list a { -webkit-flex-grow: 1; flex-grow: 1; padding-right: 10px; overflow: hidden; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
+.tab-record-list span { color: #657786; }
 .tab-record-list a, .tab-record-list span { display: inline-block; vertical-align: top;  }
 
 .tab-record-list::-webkit-scrollbar {width: 5px;}
-.tab-record-list::-webkit-scrollbar-track {background: #f8fafb;}
+.tab-record-list::-webkit-scrollbar-track {background: #fff;}
 .tab-record-list::-webkit-scrollbar-thumb {background: #bdc3c7;}
 .tab-record-list::-webkit-scrollbar-thumb:hover {background: #bbb;}

@@ -47,3 +47,5 @@ chrome.tabs.onReplaced.addListener(function(newId, oldId){
 chrome.tabs.onRemoved.addListener(function (tab) {
 	if (tabs[tab]) incRecent.push(tabs[tab]);
 });
+
+chrome.runtime.setUninstallURL("https://forms.gle/f1TQw2RK5v6M9zBP9");

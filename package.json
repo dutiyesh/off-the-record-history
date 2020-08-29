@@ -1,6 +1,6 @@
 {
   "name": "off-the-record-history",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Track your browsing history in incognito mode. Self-destructs history on browser close.",
   "main": "index.js",
   "scripts": {

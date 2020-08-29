@@ -57,7 +57,7 @@ function init() {
 			targetTabList[i].addEventListener('click', function (event) {
 
 				var tabIndex = this.getAttribute('data-tab-index');
-				document.getElementById('tab-bottom-slider').style.left = 225 * tabIndex + 'px';
+				document.getElementById('tab-bottom-slider').style.left = 50 * tabIndex + '%';
 
 				var tabsList = document.getElementsByClassName('tab-record-list'),
 					tabsListLength = tabsList.length - 1;
@@ -110,10 +110,25 @@ function init() {
 		deleteBtn.style.display = 'none';
 
 		chrome.extension.isAllowedIncognitoAccess(function (response) {
-			if (!response)
-				nullResponse("This extension is for incognito mode only.<br>To allow the extension to work in incognito:<br>1. Open 'chrome://extensions/' window<br>2. Find 'Off The Record History' extension<br>3. Click on 'Details' button<br>4. Find and select the 'Allow in incognito' checkbox");
-			else
+			if (!response) {
+				var message = '';
+
+				message += 'This extension is for incognito mode only.';
+				message += '<div class="instructions-container">';
+					message += '<p class="instructions-title">To allow the extension to work in incognito:</p>'
+					message += '<ol class="instructions-list">';
+						message += '<li>Open <b>chrome://extensions/</b> window</li>';
+						message += '<li>Find <b>Off The Record History</b> extension';
+						message += '<li>Click on <b>Details</b> button</li>';
+						message += '<li>Find and select the <b>Allow in incognito</b> switch</li>';
+					message += '</ol>';
+				message += '</div>';
+
+				nullResponse(message);
+			}
+			else {
 				nullResponse('This extension is for incognito mode only.');
+			}
 		});
 	}
 
@@ -157,12 +172,14 @@ function showRecord(result, list) {
 		if (favIconUrl != undefined)
 			img.setAttribute('src', favIconUrl);
 		else
-			img.setAttribute('src', 'default-favicon.ico');
+			img.setAttribute('src', 'file-icon.svg');
 
 		li.appendChild(img);
 
 		var a = document.createElement('a');
 		a.setAttribute('href', record[i].url);
+		a.setAttribute('title', record[i].title);
+
 		if (ulType)
 			a.setAttribute('class', 'history-target-link');
 		else
