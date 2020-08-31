@@ -32,7 +32,7 @@ function init() {
 	if (!bg) {
 		chrome.runtime.getBackgroundPage(init);
 		return;
-		}
+	}
 
 	if (chrome.extension.inIncognitoContext) {
 		tabContent.style.display = 'block';
@@ -43,10 +43,11 @@ function init() {
 		var recentlyClosed = bg.incRecent,
 			allHistory = bg.incHist;
 
-		if (recentlyClosed.length != 0)
+		if (recentlyClosed.length != 0) {
 			notNullResponse();
-		else
-			nullResponse('No records found!')
+		} else {
+			nullResponse('No records found!');
+		}
 
 		showRecord(recentlyClosed, 'record-list-0');
 		showRecord(allHistory, 'record-list-1');
@@ -67,10 +68,9 @@ function init() {
 				}
 
 				var currentTabList = document.getElementById('record-list-' + tabIndex);
-				if (currentTabList.getElementsByTagName('li').length == 0)
+				if (currentTabList.getElementsByTagName('li').length == 0) {
 					nullResponse('No records found!');
-
-				else {
+				} else {
 					notNullResponse();
 					currentTabList.style.display = 'block';
 					currentTabList.scrollTop = 0;
@@ -169,10 +169,11 @@ function showRecord(result, list) {
 		var li = document.createElement('li');
 		var img = document.createElement('img');
 		var favIconUrl = record[i].favIcon;
-		if (favIconUrl != undefined)
+		if (favIconUrl != undefined) {
 			img.setAttribute('src', favIconUrl);
-		else
+		} else {
 			img.setAttribute('src', 'file-icon.svg');
+		}
 
 		li.appendChild(img);
 
@@ -180,10 +181,11 @@ function showRecord(result, list) {
 		a.setAttribute('href', record[i].url);
 		a.setAttribute('title', record[i].title);
 
-		if (ulType)
+		if (ulType) {
 			a.setAttribute('class', 'history-target-link');
-		else
+		} else {
 			a.setAttribute('class', 'recent-target-link');
+		}
 
 		a.appendChild(document.createTextNode(record[i].title));
 		li.appendChild(a);
@@ -192,10 +194,11 @@ function showRecord(result, list) {
 		var time = new Date(record[i].timestamp);
 		var hour = time.getHours();
 		var minutes = time.getMinutes();
-		if (minutes > 9)
+		if (minutes > 9) {
 			span.appendChild(document.createTextNode(hour + ":" + minutes));
-		else
+		} else {
 			span.appendChild(document.createTextNode(hour + ":0" + minutes));
+		}
 
 		li.appendChild(span);
 		ul.appendChild(li);
