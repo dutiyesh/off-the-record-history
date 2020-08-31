@@ -134,7 +134,7 @@ function init() {
 						message += '<li>Open <b>chrome://extensions/</b> window</li>';
 						message += '<li>Find <b>Off The Record History</b> extension';
 						message += '<li>Click on <b>Details</b> button</li>';
-						message += '<li>Find and select the <b>Allow in incognito</b> switch</li>';
+						message += '<li>Find and select <b>Allow in incognito</b> switch</li>';
 					message += '</ol>';
 				message += '</div>';
 
