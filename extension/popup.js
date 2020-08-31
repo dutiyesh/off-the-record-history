@@ -9,11 +9,16 @@ _gaq.push(['_trackPageview']);
 })();
 
 function trackButtonClick(e) {
-	_gaq.push(['_trackEvent', e.target.id, 'clicked']);
+	var targetId = e.target.id || e.currentTarget.id || 'button';
+	_gaq.push(['_trackEvent', targetId, 'clicked']);
 }
 
 function trackLinkClick(e) {
 	_gaq.push(['_trackEvent', e.target.className, 'clicked']);
+}
+
+function trackViewImpression(name) {
+	_gaq.push(['_trackEvent', name, 'viewed']);
 }
 
 // pre-wake bg
@@ -85,10 +90,14 @@ function init() {
 
 		for (var i = 0; i < recentLinkList.length; i++) {
 			recentLinkList[i].addEventListener('click', function (event) {
-				chrome.tabs.create({
-					'url': this.getAttribute('href')
-				});
+				var _this = this;
+
 				trackLinkClick(event);
+				setTimeout(function() {
+					chrome.tabs.create({
+						'url': _this.getAttribute('href')
+					});
+				}, 50);
 			});
 		}
 
@@ -96,13 +105,18 @@ function init() {
 
 		for (var i = 0; i < historyLinkList.length; i++) {
 			historyLinkList[i].addEventListener('click', function (event) {
-				chrome.tabs.create({
-					'url': this.getAttribute('href')
-				});
+				var _this = this;
+
 				trackLinkClick(event);
+				setTimeout(function() {
+					chrome.tabs.create({
+						'url': _this.getAttribute('href')
+					});
+				}, 50);
 			});
 		}
 
+		trackViewImpression('popup');
 	} else {
 		tabContent.style.display = 'none';
 		recordList0.style.display = 'none';
@@ -125,9 +139,11 @@ function init() {
 				message += '</div>';
 
 				nullResponse(message);
+				trackViewImpression('incognito-message-with-instructions');
 			}
 			else {
 				nullResponse('This extension is for incognito mode only.');
+				trackViewImpression('incognito-message');
 			}
 		});
 	}
@@ -143,7 +159,6 @@ function init() {
 		nullResponse('All records were destroyed!');
 
 		trackButtonClick(event);
-
 	});
 
 	function nullResponse(message) {
