@@ -17,3 +17,9 @@
 <img src="src/images/recently-closed.jpg" alt="Access your recently closed tabs" width="500">
 <br>
 <img src="src/images/self-destruct-history.jpg" alt="Self-destructs your history on browser close" width="500">
+
+## Support
+
+<a href="https://www.buymeacoffee.com/dutiyesh" target="_blank">
+  <img src="https://user-images.githubusercontent.com/12200583/97795204-69d90800-1c29-11eb-9167-e7cd031effe3.png" alt="Support by Buying Me A Coffee" width="180" />
+</a>
