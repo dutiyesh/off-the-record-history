@@ -12,11 +12,20 @@
 
 ## Features
 
+### Track your private browsing history
+
 <img src="src/images/full-history.jpg" alt="Track your private browsing history" width="500">
-<br>
+<br />
+
+### Access your recently closed tabs
+
 <img src="src/images/recently-closed.jpg" alt="Access your recently closed tabs" width="500">
-<br>
+<br />
+
+### Self-destructs your history on browser close
+
 <img src="src/images/self-destruct-history.jpg" alt="Self-destructs your history on browser close" width="500">
+<br />
 
 ## Support
 
