@@ -1,28 +1,31 @@
-# <img src="src/images/icon48.png" width="45" align="left"> Off The Record History
+# <img src="./assets/icon48.png" width="45" align="left"> Off The Record History
 
-[link-cws]: https://chrome.google.com/webstore/detail/off-the-record-history/djbaolpiihkcmmfjnjdmomeeheldhhdp "Install"
-
-Browser extension to track your browsing history in incognito mode. Self-destructs history on browser close.
+Browser extension to track your private browsing history in incognito mode. Maintain incognito browsing history for up to 7 days.
 
 ### 🎁 Build you next extension with new [Chrome Extension CLI](https://github.com/dutiyesh/chrome-extension-cli) 🚀
 
-## Install
+## Install Extension
 
-[**Chrome** extension][link-cws]
+<a href="https://chrome.google.com/webstore/detail/off-the-record-history/djbaolpiihkcmmfjnjdmomeeheldhhdp" title="Open chrome web store"><img src="./assets/chrome-web-store.png" alt="" width="200px" /></a><br />
+Chrome Web Store link: https://chrome.google.com/webstore/detail/off-the-record-history/djbaolpiihkcmmfjnjdmomeeheldhhdp <br />
+
+## Installation Guide
+
+[Read this guide](GUIDE.md) for installation or you can watch [this video on YouTube](https://www.youtube.com/watch?v=jYN7w_kNE-w).
 
 ## Features
 
 ### Track your private browsing history
 
-<img src="src/images/full-history.jpg" alt="Track your private browsing history" width="500">
+<img src="./assets/history.jpg" alt="Track your private incognito browsing history" width="500">
 
 ### Access your recently closed tabs
 
-<img src="src/images/recently-closed.jpg" alt="Access your recently closed tabs" width="500">
+<img src="./assets/recently-closed.jpg" alt="Access your recently closed tabs" width="500">
 
-### Self-destructs your history on browser close
+### Maintain incognito browsing history for up to 7 days, beyond which history will automatically get deleted
 
-<img src="src/images/self-destruct-history.jpg" alt="Self-destructs your history on browser close" width="500">
+<img src="./assets/settings-delete.jpg" alt="Maintain history for up to 7 days" width="500">
 
 ## Support
 
