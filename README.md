@@ -17,15 +17,15 @@ Chrome Web Store link: https://chrome.google.com/webstore/detail/off-the-record-
 
 ### Track your private browsing history
 
-<img src="https://user-images.githubusercontent.com/12200583/207001830-adbb6b78-61d4-4ec5-beb9-215ba528b1d4.jpg" alt="Track your private incognito browsing history" width="500">
+<img src="https://user-images.githubusercontent.com/12200583/207001830-adbb6b78-61d4-4ec5-beb9-215ba528b1d4.jpg" alt="Track your private incognito browsing history" width="700px">
 
 ### Access your recently closed tabs
 
-<img src="https://user-images.githubusercontent.com/12200583/207001861-93233227-9b41-42d3-9b3e-27b6b44620e6.jpg" alt="Access your recently closed tabs" width="500">
+<img src="https://user-images.githubusercontent.com/12200583/207001861-93233227-9b41-42d3-9b3e-27b6b44620e6.jpg" alt="Access your recently closed tabs" width="700px">
 
 ### Maintain incognito browsing history for up to 7 days, beyond which history will automatically get deleted
 
-<img src="https://user-images.githubusercontent.com/12200583/207001873-6af7f0be-44c8-483c-bfc0-ceb9ba8f0f9d.jpg" alt="Maintain history for up to 7 days" width="500">
+<img src="https://user-images.githubusercontent.com/12200583/207001873-6af7f0be-44c8-483c-bfc0-ceb9ba8f0f9d.jpg" alt="Maintain history for up to 7 days" width="700px">
 
 ## Support
 
