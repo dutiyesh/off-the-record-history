@@ -1,4 +1,4 @@
-# <img src="./assets/icon48.png" width="45" align="left"> Off The Record History
+# <img src="https://user-images.githubusercontent.com/12200583/207001846-62ac777f-b57f-4830-9926-d21b328b95a7.png" width="45" align="left"> Off The Record History
 
 Browser extension to track your private browsing history in incognito mode. Maintain incognito browsing history for up to 7 days.
 
@@ -6,7 +6,7 @@ Browser extension to track your private browsing history in incognito mode. Main
 
 ## Install Extension
 
-<a href="https://chrome.google.com/webstore/detail/off-the-record-history/djbaolpiihkcmmfjnjdmomeeheldhhdp" title="Open chrome web store"><img src="./assets/chrome-web-store.png" alt="" width="200px" /></a><br />
+<a href="https://chrome.google.com/webstore/detail/off-the-record-history/djbaolpiihkcmmfjnjdmomeeheldhhdp" title="Open chrome web store"><img src="https://user-images.githubusercontent.com/12200583/207001817-292e2889-576e-4fc1-ad99-297c8498cc8a.png" alt="" width="200px" /></a><br />
 Chrome Web Store link: https://chrome.google.com/webstore/detail/off-the-record-history/djbaolpiihkcmmfjnjdmomeeheldhhdp <br />
 
 ## Installation Guide
@@ -17,15 +17,15 @@ Chrome Web Store link: https://chrome.google.com/webstore/detail/off-the-record-
 
 ### Track your private browsing history
 
-<img src="./assets/history.jpg" alt="Track your private incognito browsing history" width="500">
+<img src="https://user-images.githubusercontent.com/12200583/207001830-adbb6b78-61d4-4ec5-beb9-215ba528b1d4.jpg" alt="Track your private incognito browsing history" width="500">
 
 ### Access your recently closed tabs
 
-<img src="./assets/recently-closed.jpg" alt="Access your recently closed tabs" width="500">
+<img src="https://user-images.githubusercontent.com/12200583/207001861-93233227-9b41-42d3-9b3e-27b6b44620e6.jpg" alt="Access your recently closed tabs" width="500">
 
 ### Maintain incognito browsing history for up to 7 days, beyond which history will automatically get deleted
 
-<img src="./assets/settings-delete.jpg" alt="Maintain history for up to 7 days" width="500">
+<img src="https://user-images.githubusercontent.com/12200583/207001873-6af7f0be-44c8-483c-bfc0-ceb9ba8f0f9d.jpg" alt="Maintain history for up to 7 days" width="500">
 
 ## Support
 
