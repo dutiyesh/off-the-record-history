@@ -93,13 +93,6 @@ To pin the extension beside search bar watch [its video on YouTube](https://www.
 5. Extension can now be accessed from beside search bar itself<br/>
    <div><img src="https://user-images.githubusercontent.com/12200583/207002924-45b77778-2faa-4cae-8f59-96bdfd42d3d6.jpg" alt="" width="700px" /></div><br />
 
-## Open extension using shortcut
-
-Use below shortcut keys to open extension irrespective of whether extension is pinned or not:
-- Windows: Ctrl + I
-- Mac: Command + I
-<br />
-
 ---
 
 _Arrow icons used in above Guide images created by [Creative Stall Premium - Flaticon](https://www.flaticon.com/free-icons/arrow)_
